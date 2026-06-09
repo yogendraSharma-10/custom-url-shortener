@@ -1,0 +1,350 @@
+/*
+ * main.css
+ *
+ * This file contains the primary styling for the Custom URL Shortener client-side application.
+ * It defines global styles, layout, and component-specific styles to ensure a consistent
+ * and intuitive user interface.
+ */
+
+/* --- 1. Global Reset & Base Styles --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Color Palette */
+    --primary-color: #007bff; /* Blue */
+    --primary-dark: #0056b3;
+    --secondary-color: #6c757d; /* Gray */
+    --accent-color: #28a745; /* Green for success */
+    --danger-color: #dc3545; /* Red for errors */
+    --background-light: #f8f9fa; /* Light gray background */
+    --background-dark: #e9ecef; /* Slightly darker gray */
+    --text-color: #343a40; /* Dark text */
+    --text-light: #6c757d;
+    --border-color: #ced4da;
+    --card-background: #ffffff;
+
+    /* Typography */
+    --font-family-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    --font-size-base: 1rem;
+    --line-height-base: 1.6;
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+
+    /* Border Radius */
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.5rem;
+
+    /* Box Shadows */
+    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: var(--font-family-sans);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--text-color);
+    background-color: var(--background-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- 2. Layout & Structure --- */
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    flex-grow: 1;
+    width: 100%;
+    max-width: 960px; /* Max width for content */
+    margin: 0 auto; /* Center the app content */
+}
+
+.container {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-xl);
+    width: 100%;
+    max-width: 600px; /* Max width for the main card */
+    text-align: center;
+}
+
+/* --- 3. Header --- */
+header {
+    margin-bottom: var(--spacing-xxl);
+    width: 100%;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* --- 4. Form Styles --- */
+.url-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.url-form label {
+    display: none; /* Hide label visually, rely on placeholder */
+}
+
+.url-form input[type="url"] {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-base);
+    color: var(--text-color);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.url-form input[type="url"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.url-form button {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--primary-color);
+    color: var(--card-background);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.url-form button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.url-form button:active {
+    transform: translateY(0);
+}
+
+.url-form button:disabled {
+    background-color: var(--secondary-color);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* --- 5. Result Display --- */
+.result-section {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: var(--background-dark);
+    border-radius: var(--border-radius-sm);
+    border: 1px dashed var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
+    width: 100%;
+}
+
+.result-section p {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.short-url-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.short-url-display a {
+    flex-grow: 1;
+    text-align: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    word-break: break-all; /* Ensure long URLs break */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.short-url-display a:hover {
+    background-color: var(--background-light);
+    text-decoration: underline;
+}
+
+.copy-button {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--accent-color);
+    color: var(--card-background);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    white-space: nowrap; /* Prevent "Copy" from wrapping */
+}
+
+.copy-button:hover {
+    background-color: #218838; /* Darker green */
+}
+
+.copy-button:active {
+    transform: translateY(1px);
+}
+
+.copy-button.copied {
+    background-color: var(--secondary-color);
+}
+
+/* --- 6. Messages (Error/Loading/Success) --- */
+.message {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    margin-top: var(--spacing-md);
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+}
+
+.message.error {
+    background-color: rgba(220, 53, 69, 0.1); /* Light red */
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
+.message.success {
+    background-color: rgba(40, 167, 69, 0.1); /* Light green */
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+}
+
+.message.loading {
+    background-color: rgba(0, 123, 255, 0.1); /* Light blue */
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+/* --- 7. Footer --- */
+footer {
+    margin-top: var(--spacing-xxl);
+    padding: var(--spacing-md);
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* --- 8. Responsive Design --- */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: var(--spacing-lg);
+    }
+
+    .url-form {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .url-form input[type="url"],
+    .url-form button {
+        font-size: 1rem;
+        padding: var(--spacing-sm);
+    }
+
+    .short-url-display {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .short-url-display a {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .copy-button {
+        width: 100%;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .App {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        padding: var(--spacing-md);
+    }
+
+    .result-section {
+        padding: var(--spacing-sm);
+    }
+}
