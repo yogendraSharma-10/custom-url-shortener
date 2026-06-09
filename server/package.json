@@ -1,0 +1,51 @@
+```json
+{
+  "name": "url-shortener-service",
+  "version": "1.0.0",
+  "description": "A robust Node.js microservice for converting long URLs into short, memorable links. Designed for high availability and easy integration within a larger ecosystem, including services like the Real-time Weather Dashboard, Interactive E-commerce Product Catalog, and AI-Powered Content Assistant.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "url-shortener",
+    "microservice",
+    "nodejs",
+    "express",
+    "mongodb",
+    "short-links",
+    "api",
+    "weather-dashboard",
+    "ecommerce-catalog",
+    "ai-content-assistant"
+  ],
+  "author": "Your Name/Organization",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.2.0",
+    "helmet": "^7.1.0",
+    "mongoose": "^8.3.2",
+    "morgan": "^1.10.0",
+    "shortid": "^2.2.16",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+```
